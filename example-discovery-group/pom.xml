@@ -9,12 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>demo</artifactId>
+    <artifactId>example-discovery-group</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>demo-nacos-discovery-consumer</module>
-        <module>demo-nacos-discovery-provider</module>
+        <module>example-nacos-discovery-consumer</module>
+        <module>example-nacos-discovery-provider</module>
     </modules>
 
     <properties>

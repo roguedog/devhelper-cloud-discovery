@@ -20,8 +20,7 @@
         <module>spring-cloud-discovery-group-common</module>
         <module>spring-cloud-starter-discovery-group-eureka</module>
         <module>spring-cloud-starter-discovery-group-nacos</module>
-        <module>demo</module>
-        <module>demo/demo-nacos-discovery-consumer</module>
+        <module>example-discovery-group</module>
     </modules>
 
     <properties>
