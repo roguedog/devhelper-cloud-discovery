@@ -21,6 +21,7 @@
         <module>spring-cloud-starter-discovery-group-eureka</module>
         <module>spring-cloud-starter-discovery-group-nacos</module>
         <module>demo</module>
+        <module>demo/demo-nacos-discovery-consumer</module>
     </modules>
 
     <properties>
