@@ -1,13 +1,31 @@
 package com.github.rd.cloud.example;
 
+import com.alibaba.cloud.sentinel.annotation.SentinelRestTemplate;
+import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.UrlCleaner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
 @SpringBootApplication
 @EnableDiscoveryClient(autoRegister = true)
 @EnableFeignClients
 public class ConsumerApplication {
 
+    public static void main(String[] args) {
+        SpringApplication.run(ConsumerApplication.class, args);
+    }
+
     @LoadBalanced
     @Bean
-    @SentinelRestTemplate(urlCleanerClass = UrlCleaner.class, urlCleaner = "clean")
+    @SentinelRestTemplate
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
@@ -17,10 +35,6 @@ public class ConsumerApplication {
     @SentinelRestTemplate
     public RestTemplate restTemplate1() {
         return new RestTemplate();
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(ConsumerApplication.class, args);
     }
 
     @FeignClient(name = "service-provider", fallback = EchoServiceFallback.class,
@@ -53,7 +67,7 @@ class FeignConfiguration {
 
 }
 
-class EchoServiceFallback implements EchoService {
+class EchoServiceFallback implements ConsumerApplication.EchoService {
 
     @Override
     public String echo(@PathVariable("str") String str) {
