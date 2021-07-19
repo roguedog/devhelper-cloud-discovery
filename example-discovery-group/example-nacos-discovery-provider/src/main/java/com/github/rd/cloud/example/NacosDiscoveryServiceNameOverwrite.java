@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 
 @Configuration
-@ConditionalOnProperty(value = {"codemao.cloud.discovery.group.enabled"}, matchIfMissing = false)
+@ConditionalOnProperty(value = {"xxx.cloud.discovery.group.enabled"}, matchIfMissing = false)
 @AutoConfigureBefore(NacosServiceRegistryAutoConfiguration.class)
 @AutoConfigureAfter(NacosDiscoveryProperties.class)
 public class NacosDiscoveryServiceNameOverwrite {

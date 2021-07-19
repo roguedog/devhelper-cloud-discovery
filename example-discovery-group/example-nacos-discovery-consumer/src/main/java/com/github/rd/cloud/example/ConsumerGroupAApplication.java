@@ -12,8 +12,9 @@ public class ConsumerGroupAApplication {
 
     public static void main(String[] args) {
         System.setProperty("server.port", "18083");
-        //让矿建的feign中的httpClient失效， org.springframework.cloud.openfeign.ribbon.FeignRibbonClientAutoConfiguration
+        //让框架的feign中的httpClient失效， org.springframework.cloud.openfeign.ribbon.HttpClientFeignLoadBalancedConfiguration
         System.setProperty("feign.httpclient.enabled", "false");
+        System.setProperty("feign.okhttp.enabled", "false");
         SpringApplication.run(ConsumerGroupAApplication.class, args);
     }
 
