@@ -13,7 +13,7 @@
 在feign中mock服务 https://www.cnblogs.com/zhangjianbin/p/9245023.html，重写LoadBalancerFeignClient.execute
 
 
-- 配置文件配置：codemao-dev-helper.discovery.service-rewrite.[producer-name]=[producer-name]-[IP]
-- 重写服务发现：根据codemao-dev-helper.discovery.service-rewrite配置来发现需要联调的服务
+- 配置文件配置：xxx-dev-helper.discovery.service-rewrite.[producer-name]=[producer-name]-[IP]
+- 重写服务发现：根据xxx-dev-helper.discovery.service-rewrite配置来发现需要联调的服务
 - 如果用的是eureka，需要重写org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient#getInstances，
 - 如果用的nacos，需要重写com.alibaba.cloud.nacos.discovery.NacosDiscoveryClien
