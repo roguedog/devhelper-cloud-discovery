@@ -6,17 +6,60 @@ import feign.Response;
 import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
 import org.springframework.cloud.openfeign.ribbon.CachingSpringLoadBalancerFactory;
 import org.springframework.cloud.openfeign.ribbon.LoadBalancerFeignClient;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * feign远程调用重写
+ */
 public class MyLoadBalancerFeignClient extends LoadBalancerFeignClient {
-    public MyLoadBalancerFeignClient(Client delegate, CachingSpringLoadBalancerFactory lbClientFactory, SpringClientFactory clientFactory) {
+    private final Map<String,String> replaceClientNameConfig =new HashMap<>();
+    public MyLoadBalancerFeignClient(Client delegate, CachingSpringLoadBalancerFactory lbClientFactory, SpringClientFactory clientFactory, DiscoveryProperties discoveryProperties) {
         super(delegate, lbClientFactory, clientFactory);
+        buildReplaceClientNameConfig(discoveryProperties);
     }
+
+    private void buildReplaceClientNameConfig(DiscoveryProperties discoveryProperties) {
+        replaceClientNameConfig.putAll(discoveryProperties.getGroup());
+        replaceClientNameConfig.putAll(discoveryProperties.getReplaceName());
+    }
+
 
     @Override
     public Response execute(Request request, Request.Options options) throws IOException {
-        System.out.println(request.url());
+        String url = request.url();
+        URI asUri = URI.create(url);
+        String clientName = asUri.getHost();
+        String newClientName = replaceClientNameConfig.get(clientName);
+        if (!StringUtils.isEmpty(newClientName)) {
+            String newUrl = replaceClientName(url, clientName, newClientName);
+            request = Request.create(request.httpMethod(),
+                    newUrl, request.headers(), request.body(), request.charset(), request.requestTemplate()
+            );
+        }
         return super.execute(request, options);
+    }
+
+    String replaceClientName(String originalUrl, String clientName, String newClientName) {
+        String newUrl = originalUrl;
+        String prefix = "";
+        String suffix = "";
+        if (originalUrl.startsWith("https://")) {
+            prefix = originalUrl.substring(0, 8);
+            suffix = originalUrl.substring(8 + clientName.length());
+        } else if (originalUrl.startsWith("http")) {
+            prefix = originalUrl.substring(0, 7);
+            suffix = originalUrl.substring(7 + clientName.length());
+        }
+        StringBuffer buffer = new StringBuffer(prefix + newClientName + suffix);
+        if (newUrl.startsWith("https://") && newUrl.length() == 8 || newUrl.startsWith("http://") && newUrl.length() == 7) {
+            buffer.append("/");
+        }
+
+        return buffer.toString();
     }
 }

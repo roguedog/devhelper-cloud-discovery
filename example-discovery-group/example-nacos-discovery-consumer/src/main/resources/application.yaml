@@ -1,0 +1,9 @@
+xxx:
+  cloud:
+    discovery:
+      dev-helper:
+        enabled: true
+#        group:
+#          service-provider: group1
+#        replace-name:
+#          service-provider: 127.0.0.1:18082

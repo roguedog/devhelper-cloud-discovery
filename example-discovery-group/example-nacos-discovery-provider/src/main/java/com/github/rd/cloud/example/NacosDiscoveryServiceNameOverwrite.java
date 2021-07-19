@@ -21,6 +21,6 @@ public class NacosDiscoveryServiceNameOverwrite {
     @PostConstruct
     public void rewriteServiceId() {
         System.out.println(1);
-        nacosDiscoveryProperties.setService(nacosDiscoveryProperties.getService() + "-group-A");
+        nacosDiscoveryProperties.setService(nacosDiscoveryProperties.getService() + "-group1");
     }
 }

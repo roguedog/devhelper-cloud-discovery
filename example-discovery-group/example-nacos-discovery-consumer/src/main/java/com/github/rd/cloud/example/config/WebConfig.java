@@ -2,7 +2,9 @@ package com.github.rd.cloud.example.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class MvcConfig {
+@EnableDiscoveryClient
+@EnableFeignClients
+public class WebConfig {
 
     @LoadBalanced
     @Bean
@@ -19,7 +23,7 @@ public class MvcConfig {
         return new RestTemplate();
     }
 
-    @FeignClient(name = "service-provider")
+    @FeignClient(name = "service-provider", url = "127.0.0.1:18082")
     public interface EchoService {
 
         @GetMapping("/test")
