@@ -23,7 +23,7 @@ public class WebConfig {
         return new RestTemplate();
     }
 
-    @FeignClient(name = "service-provider", url = "127.0.0.1:18082")
+    @FeignClient(name = "service-provider")
     public interface EchoService {
 
         @GetMapping("/test")

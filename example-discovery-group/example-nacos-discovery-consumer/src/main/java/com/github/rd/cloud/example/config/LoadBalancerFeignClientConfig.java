@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Import;
         proxyBeanMethods = false
 )
 @ConditionalOnClass({OkHttpClient.class})
-@ConditionalOnProperty({"xxx.cloud.discovery.group.enabled"})
+@ConditionalOnProperty(value = {"xxx.cloud.dev-helper.discovery.group.enabled"}, matchIfMissing = false)
 @EnableConfigurationProperties({DiscoveryProperties.class})
 @Import({OkHttpFeignConfiguration.class})
 public class LoadBalancerFeignClientConfig {
