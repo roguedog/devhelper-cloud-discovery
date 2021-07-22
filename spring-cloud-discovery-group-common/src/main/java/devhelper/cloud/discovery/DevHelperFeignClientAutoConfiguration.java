@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Import;
 )
 @ConditionalOnClass({OkHttpClient.class})
 @ConditionalOnProperty(value = {"dev-helper.cloud.discovery.group.enabled"}, matchIfMissing = false)
-@EnableConfigurationProperties({DevHelperCloudDiscoveryProperties.class})
+@EnableConfigurationProperties(DevHelperCloudDiscoveryProperties.class)
 @Import({OkHttpFeignConfiguration.class})
 class DevHelperFeignClientAutoConfiguration {
 

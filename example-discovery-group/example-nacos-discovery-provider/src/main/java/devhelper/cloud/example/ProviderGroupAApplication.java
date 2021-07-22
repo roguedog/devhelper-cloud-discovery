@@ -4,13 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@EnableDiscoveryClient
 @SpringBootApplication
+@EnableDiscoveryClient
 public class ProviderGroupAApplication {
 
     public static void main(String[] args) {
         System.setProperty("server.port", "18082");
-        System.setProperty("xxx.cloud.discovery.group.enabled", "true");
+        System.setProperty("spring.profiles.active", "group");
         SpringApplication.run(ProviderGroupAApplication.class, args);
     }
 
