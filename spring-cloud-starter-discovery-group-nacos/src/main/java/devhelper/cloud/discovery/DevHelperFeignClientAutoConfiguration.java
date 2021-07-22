@@ -1,4 +1,4 @@
-package com.github.rd.cloud.example.config;
+package devhelper.cloud.discovery;
 
 import feign.Client;
 import feign.okhttp.OkHttpClient;
@@ -20,19 +20,19 @@ import org.springframework.context.annotation.Import;
         proxyBeanMethods = false
 )
 @ConditionalOnClass({OkHttpClient.class})
-@ConditionalOnProperty(value = {"xxx.cloud.dev-helper.discovery.group.enabled"}, matchIfMissing = false)
-@EnableConfigurationProperties({DiscoveryProperties.class})
+@ConditionalOnProperty(value = {"dev-helper.cloud.discovery.group.enabled"}, matchIfMissing = false)
+@EnableConfigurationProperties({DevHelperCloudDiscoveryProperties.class})
 @Import({OkHttpFeignConfiguration.class})
-public class LoadBalancerFeignClientConfig {
+class DevHelperFeignClientAutoConfiguration {
 
-    LoadBalancerFeignClientConfig() {
+    DevHelperFeignClientAutoConfiguration() {
     }
 
     @Bean
     @ConditionalOnMissingBean({Client.class})
-    public Client feignClient(CachingSpringLoadBalancerFactory cachingFactory, SpringClientFactory clientFactory, okhttp3.OkHttpClient okHttpClient, DiscoveryProperties discoveryProperties) {
+    public Client feignClient(CachingSpringLoadBalancerFactory cachingFactory, SpringClientFactory clientFactory, okhttp3.OkHttpClient okHttpClient, DevHelperCloudDiscoveryProperties discoveryProperties) {
         OkHttpClient delegate = new OkHttpClient(okHttpClient);
-        return new MyLoadBalancerFeignClient(delegate, cachingFactory, clientFactory, discoveryProperties);
+        return new DevHelperLoadBalancerFeignClient(delegate, cachingFactory, clientFactory, discoveryProperties);
     }
 
 }

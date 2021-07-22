@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.rd.cloud.example.feign;
+package devhelper.cloud.example.feign;
 
 import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.context.annotation.Import;

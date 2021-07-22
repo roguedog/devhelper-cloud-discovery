@@ -1,4 +1,4 @@
-package com.github.rd.cloud.example.config;
+package devhelper.cloud.example.config;
 
 import feign.Client;
 import feign.Request;

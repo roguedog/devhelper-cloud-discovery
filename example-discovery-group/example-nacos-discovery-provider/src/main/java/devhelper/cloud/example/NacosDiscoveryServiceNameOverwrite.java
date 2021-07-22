@@ -1,4 +1,4 @@
-package com.github.rd.cloud.example;
+package devhelper.cloud.example;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.cloud.nacos.registry.NacosServiceRegistryAutoConfiguration;

@@ -1,4 +1,4 @@
-package com.github.rd.cloud.example;
+package devhelper.cloud.example;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
