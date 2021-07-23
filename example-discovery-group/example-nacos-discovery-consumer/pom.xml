@@ -5,7 +5,7 @@
     <parent>
         <artifactId>example-discovery-group</artifactId>
         <groupId>com.github.rd.cloud</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
