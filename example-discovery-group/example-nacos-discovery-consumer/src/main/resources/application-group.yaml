@@ -2,7 +2,6 @@ dev-helper:
   cloud:
     registry:
       enabled: true
-      group: group1
     discovery:
       enabled: true
-      group: { service-provider: group1 }
+      group: { service-provider: "zhangkai" }

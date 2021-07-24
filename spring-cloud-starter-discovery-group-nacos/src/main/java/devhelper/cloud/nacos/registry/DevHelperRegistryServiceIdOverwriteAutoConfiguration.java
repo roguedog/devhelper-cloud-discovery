@@ -2,14 +2,13 @@ package devhelper.cloud.nacos.registry;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.cloud.nacos.registry.NacosServiceRegistryAutoConfiguration;
-import devhelper.cloud.nacos.DevHelperDiscoveryUtils;
+import devhelper.cloud.nacos.DevHelperDiscoveryServiceIdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 
@@ -31,9 +30,7 @@ public class DevHelperRegistryServiceIdOverwriteAutoConfiguration {
 
     @PostConstruct
     public void rewriteServiceId() {
-        if (!StringUtils.isEmpty(registryProperties.getGroup())) {
-            //服务注册时增加分组后缀
-            nacosDiscoveryProperties.setService(DevHelperDiscoveryUtils.buildServiceIdByGroup(nacosDiscoveryProperties.getService(), registryProperties.getGroup()));
-        }
+        //服务注册时增加分组后缀
+        nacosDiscoveryProperties.setService(DevHelperDiscoveryServiceIdUtils.buildRegistryServiceIdByGroup(nacosDiscoveryProperties.getService(), registryProperties.getGroup()));
     }
 }

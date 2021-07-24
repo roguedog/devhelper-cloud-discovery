@@ -1,6 +1,6 @@
 package devhelper.cloud.nacos.discovery;
 
-import devhelper.cloud.nacos.DevHelperDiscoveryUtils;
+import devhelper.cloud.nacos.DevHelperDiscoveryServiceIdUtils;
 import feign.Client;
 import feign.Request;
 import feign.Response;
@@ -18,6 +18,7 @@ import java.util.Map;
  * feign远程调用重写, 替换clientName
  */
 class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
+
     private final Map<String,String> groupConfig = new HashMap<>();
     public DevHelperLoadBalancerFeignClient(Client delegate, CachingSpringLoadBalancerFactory lbClientFactory, SpringClientFactory clientFactory, DevHelperDiscoveryProperties discoveryProperties) {
         super(delegate, lbClientFactory, clientFactory);
@@ -50,7 +51,7 @@ class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
             prefix = originalUrl.substring(0, 7);
             suffix = originalUrl.substring(7 + clientName.length());
         }
-        StringBuffer buffer = new StringBuffer(prefix + DevHelperDiscoveryUtils.buildServiceIdByGroup(clientName, groupName) + suffix);
+        StringBuffer buffer = new StringBuffer(prefix + DevHelperDiscoveryServiceIdUtils.getDiscoveryServiceIdByGroup(clientName, groupName) + suffix);
         if (newUrl.startsWith("https://") && newUrl.length() == 8 || newUrl.startsWith("http://") && newUrl.length() == 7) {
             buffer.append("/");
         }
