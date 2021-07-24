@@ -20,7 +20,6 @@
         <dependency>
             <groupId>com.github.rd.cloud</groupId>
             <artifactId>spring-cloud-starter-discovery-group-nacos</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -47,4 +46,16 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>devhelper.cloud.nacos.example.ConsumerDefaultGroupApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

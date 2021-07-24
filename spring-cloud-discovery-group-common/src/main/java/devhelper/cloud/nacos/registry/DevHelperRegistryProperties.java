@@ -1,10 +1,9 @@
-package devhelper.cloud;
+package devhelper.cloud.nacos.registry;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "dev-helper.cloud.discovery")
-public
-class DevHelperCloudRegistryProperties {
+@ConfigurationProperties(prefix = "dev-helper.cloud.registry")
+public class DevHelperRegistryProperties {
 
     private String group;
 

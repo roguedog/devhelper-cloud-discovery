@@ -1,4 +1,4 @@
-package devhelper.cloud.example.config;
+package devhelper.cloud.nacos.example.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;

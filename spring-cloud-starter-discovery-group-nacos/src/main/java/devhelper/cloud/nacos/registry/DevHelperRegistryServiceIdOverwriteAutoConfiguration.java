@@ -1,9 +1,8 @@
-package devhelper.cloud.registry;
+package devhelper.cloud.nacos.registry;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.cloud.nacos.registry.NacosServiceRegistryAutoConfiguration;
-import devhelper.cloud.DevHelperCloudDiscoveryConstant;
-import devhelper.cloud.DevHelperCloudRegistryProperties;
+import devhelper.cloud.nacos.DevHelperDiscoveryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -16,22 +15,25 @@ import javax.annotation.PostConstruct;
 
 /**
  * 服务注册时增加分组后缀
+ * @author zhangkai
  */
 @Configuration
-@ConditionalOnProperty(value = {"dev-helper.cloud.registry.group.enabled"}, matchIfMissing = false)
-@EnableConfigurationProperties(DevHelperCloudRegistryProperties.class)
+@ConditionalOnProperty(value = {"dev-helper.cloud.registry.enabled"}, matchIfMissing = false)
+@EnableConfigurationProperties(DevHelperRegistryProperties.class)
 @AutoConfigureBefore(NacosServiceRegistryAutoConfiguration.class)
 @AutoConfigureAfter(NacosDiscoveryProperties.class)
-public class DevHelperServiceIdOverwriteAutoConfiguration {
+public class DevHelperRegistryServiceIdOverwriteAutoConfiguration {
+
     @Autowired
     private NacosDiscoveryProperties nacosDiscoveryProperties;
     @Autowired
-    private DevHelperCloudRegistryProperties registryProperties;
+    private DevHelperRegistryProperties registryProperties;
 
     @PostConstruct
     public void rewriteServiceId() {
         if (!StringUtils.isEmpty(registryProperties.getGroup())) {
-            nacosDiscoveryProperties.setService(DevHelperCloudDiscoveryConstant.buildServiceIdByGroup(nacosDiscoveryProperties.getService(), registryProperties.getGroup()));
+            //服务注册时增加分组后缀
+            nacosDiscoveryProperties.setService(DevHelperDiscoveryUtils.buildServiceIdByGroup(nacosDiscoveryProperties.getService(), registryProperties.getGroup()));
         }
     }
 }

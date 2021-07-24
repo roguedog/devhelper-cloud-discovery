@@ -1,5 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-devhelper.cloud.discovery.DevHelperFeignClientAutoConfiguration,\
-devhelper.cloud.registry.DevHelperServiceIdOverwriteAutoConfiguration
-org.springframework.context.ApplicationContextInitializer=\
-devhelper.cloud.discovery.DisableDefaultFeignHttpClient
+devhelper.cloud.nacos.DevHelperNocosDiscoveryAutoConfiguration
