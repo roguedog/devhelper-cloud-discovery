@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Import;
 
 /**
  * feign远程调用重写配置
+ * @author zhangkai
  */
 @Configuration(
         proxyBeanMethods = false

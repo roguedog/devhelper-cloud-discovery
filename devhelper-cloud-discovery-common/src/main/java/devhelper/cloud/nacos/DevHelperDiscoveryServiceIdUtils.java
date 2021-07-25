@@ -5,6 +5,10 @@ import org.springframework.util.StringUtils;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * service id拼接group
+ * @author zhangkai
+ */
 public class DevHelperDiscoveryServiceIdUtils {
     public static final String PREFIX_GROUP = ".";
     private static String DEFAULT_GROUP;

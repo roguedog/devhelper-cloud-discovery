@@ -16,6 +16,7 @@ import java.util.Map;
 
 /**
  * feign远程调用重写, 替换clientName
+ * @author zhangkai
  */
 class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
 
