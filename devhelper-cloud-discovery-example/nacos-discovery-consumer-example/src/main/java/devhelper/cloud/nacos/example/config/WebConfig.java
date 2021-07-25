@@ -23,7 +23,7 @@ public class WebConfig {
         return new RestTemplate();
     }
 
-    @FeignClient(name = "service-provider")
+    @FeignClient(name = "nacos-service-provider")
     public interface EchoService {
 
         @GetMapping("/test")

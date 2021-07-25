@@ -77,11 +77,13 @@
                 <groupId>devhelper-cloud</groupId>
                 <artifactId>devhelper-cloud-starter-discovery-nacos</artifactId>
                 <version>${revision}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>devhelper-cloud</groupId>
                 <artifactId>devhelper-cloud-starter-discovery-eureka</artifactId>
                 <version>${revision}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

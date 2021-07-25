@@ -1,30 +1,64 @@
-服务注册发现分组
+# Spring cloud、Alibaba cloud开发助手
 
-本地开发时，环境隔离、联调的方案设计
+## 介绍
 
-1、本地服务注册时，通过org.springframework.context.ApplicationContextInitializer修改服务注册名称，[spring.application.name]-[IP]，达到隔离环境的目的
-- nacos
-    - 服务注册的配置入口是NacosServiceRegistryAutoConfiguration, com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register
-    - 服务注册名称获取方法是com.alibaba.cloud.nacos.registry.NacosRegistration.getServiceId, com.alibaba.cloud.nacos.NacosDiscoveryProperties.service，具体是通过获取配置文件@Value("${spring.cloud.nacos.discovery.service:${spring.application.name:}}")
-2、自定义服务发现：
+微服务本地开发时，如果本地服务注册到其他环境，会污染其他环境、影响其他人使用。devhelper-cloud-discovery可以解决这个问题(注：不要在生产环境使用)
+ 
+## 添加依赖
 
-Feign自动装配FeignClientsConfiguration，FeignAutoConfiguration，FeignRibbonClientAutoConfiguration ，HttpClientFeignLoadBalancedConfiguration，OkHttpFeignLoadBalancedConfiguration
+```xml
+<!--如果注册中心用的是nacos（spring-cloud-starter-alibaba-nacos-discovery），添加以下依赖：-->
+<dependency>
+    <groupId>devhelper-cloud</groupId>
+    <artifactId>devhelper-cloud-starter-discovery-nacos</artifactId>
+    <version>x.y.z</version>
+    <!--只能在开发阶段使用，必须配置为test，最好用dependencyManagement来管理-->
+    <scope>test</scope>
+</dependency>
 
-重写feign的URL https://www.cnblogs.com/zhangjianbin/p/9245023.html
+<!--如果注册中心用的是eureka，敬请期待：-->
 
-feign初始化详解 https://blog.csdn.net/caychen/article/details/107717311
+```
 
-@OpenFeign注解解析并注册bean FeignClientsRegistrar.registerFeignClients，FeignClientsRegistrar.registerFeignClient, 通过@EnableFeignClients来@import
+## 配置(在src/test目录里配置，不污染源代码)
+在src/test/resources目录下的application-group.yaml中配置
+```yaml
+devhelper:
+  cloud:
+    # 服务注册配置
+    registry:
+      #开启devhelper的服务注册
+      enabled: true
+      #对服务注册进行分组，分组名配置为group-1
+      group: group-1
+    # 服务发现配置
+    discovery:
+      #开启devhelper的服务发现
+      enabled: true
+      # 发现指定分组下的服务，JSON格式，key：服务名称，value: 分组名称
+      group: { "service-provider": "group-1" }
+```
+在src/test/java目录下配置启动类
+```java
+/**
+ * 本地开发时，在src/test目录下配置和启动项目，不污染源代码
+ */
+@SpringBootApplication
+public class NacosConsumerDevApplication {
+    public static void main(String[] args) {
+        //引入分组的配置文件
+        System.setProperty("spring.profiles.active", "group");
+        SpringApplication.run(NacosConsumerDevApplication.class, args);
 
-feign client实例创建FeignClientFactoryBean.getObject()
+    }
+}
+```
 
-动态创建Feign clients https://www.cnblogs.com/zyly/p/14771134.html org.springframework.cloud.openfeign.FeignClientBuilder
+### 配置详解
 
-在feign中mock服务 https://www.cnblogs.com/zhangjianbin/p/9245023.html，重写LoadBalancerFeignClient.execute
-
-feign配置项org.springframework.cloud.openfeign.FeignClientProperties.FeignClientConfiguration
-
-- 配置文件配置：xxx-devhelper.discovery.service-rewrite.[producer-name]=[producer-name]-[IP]
-- 重写服务发现：根据xxx-devhelper.discovery.service-rewrite配置来发现需要联调的服务
-- 如果用的是eureka，需要重写org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient#getInstances，
-- 如果用的nacos，需要重写com.alibaba.cloud.nacos.discovery.NacosDiscoveryClien
+| 配置项 | 描述 | 类型 | 默认值 |
+|------|------------|------|-------|
+| devhelper.cloud.registry.enabled | devhelper的服务注册是否开启 | String | false (默认不开启，也是为了避免生产环境使用) |
+| devhelper.cloud.registry.group | 对服务注册进行分组，注册的服务名称变成[provider-name].[group-name] | String | 本机的hostname (hostname有利于开发人员识别服务注册方) |
+| devhelper.cloud.discovery.enabled | devhelper的服务发现是否开启 | String | false (默认不开启，也是为了避免生产环境使用) |
+| devhelper.cloud.discovery.group | 发现指定分组下的服务 | JSON对象{"服务名称-1": "分组名称", "服务名称": "分组名称"} | 空 |

@@ -4,13 +4,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@EnableDiscoveryClient
+/**
+ * 本地开发时，在src/test目录下配置和启动项目，不污染源代码
+ * @author zhangkai
+ */
 @SpringBootApplication
-public class ProviderDefaultGroupApplication {
+@EnableDiscoveryClient
+public class NacosProviderApplication {
 
     public static void main(String[] args) {
         System.setProperty("server.port", "18081");
-        SpringApplication.run(ProviderDefaultGroupApplication.class, args);
+        SpringApplication.run(NacosProviderApplication.class, args);
     }
 
 }
