@@ -24,7 +24,7 @@ feign client实例创建FeignClientFactoryBean.getObject()
 
 feign配置项org.springframework.cloud.openfeign.FeignClientProperties.FeignClientConfiguration
 
-- 配置文件配置：xxx-dev-helper.discovery.service-rewrite.[producer-name]=[producer-name]-[IP]
-- 重写服务发现：根据xxx-dev-helper.discovery.service-rewrite配置来发现需要联调的服务
+- 配置文件配置：xxx-devhelper.discovery.service-rewrite.[producer-name]=[producer-name]-[IP]
+- 重写服务发现：根据xxx-devhelper.discovery.service-rewrite配置来发现需要联调的服务
 - 如果用的是eureka，需要重写org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient#getInstances，
 - 如果用的nacos，需要重写com.alibaba.cloud.nacos.discovery.NacosDiscoveryClien

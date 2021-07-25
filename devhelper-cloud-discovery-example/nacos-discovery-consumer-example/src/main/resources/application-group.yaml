@@ -1,0 +1,7 @@
+devhelper:
+  cloud:
+    registry:
+      enabled: true
+    discovery:
+      enabled: true
+      group: { service-provider: "zhangkai" }
