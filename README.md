@@ -2,9 +2,13 @@
 
 ## 介绍
 
-微服务本地开发时，如果本地服务注册到其他环境，会污染其他环境、影响其他人使用。devhelper-cloud-discovery可以解决这个问题(注：不要在生产环境使用)
+#### 微服务本地开发时，如果本地服务注册到其他环境，会污染其他环境、影响其他人使用。devhelper-cloud-discovery可以解决这个问题(注：不要在生产环境使用)
  
 ## 添加依赖
+- 版本说明
+  - 1.0-SNAPSHOT 实验
+  - release待发布
+  
 如果注册中心用的是nacos（spring-cloud-starter-alibaba-nacos-discovery），添加以下依赖：
 ```xml
 <dependency>
