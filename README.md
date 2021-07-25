@@ -5,9 +5,8 @@
 微服务本地开发时，如果本地服务注册到其他环境，会污染其他环境、影响其他人使用。devhelper-cloud-discovery可以解决这个问题(注：不要在生产环境使用)
  
 ## 添加依赖
-
+如果注册中心用的是nacos（spring-cloud-starter-alibaba-nacos-discovery），添加以下依赖：
 ```xml
-<!--如果注册中心用的是nacos（spring-cloud-starter-alibaba-nacos-discovery），添加以下依赖：-->
 <dependency>
     <groupId>devhelper-cloud</groupId>
     <artifactId>devhelper-cloud-starter-discovery-nacos</artifactId>
@@ -18,6 +17,10 @@
 
 <!--如果注册中心用的是eureka，敬请期待：-->
 
+```
+如果注册中心用的是eureka，敬请期待!
+```xml
+<!--敬请期待!-->
 ```
 
 ## 配置(在src/test目录里配置，不污染源代码)
@@ -58,7 +61,16 @@ public class NacosConsumerDevApplication {
 
 | 配置项 | 描述 | 类型 | 默认值 |
 |------|------------|------|-------|
-| devhelper.cloud.registry.enabled | devhelper的服务注册是否开启 | String | false (默认不开启，也是为了避免生产环境使用) |
+| devhelper.cloud.registry.enabled | devhelper的服务注册是否开启 | boolean | false (默认不开启，也是为了避免生产环境使用) |
 | devhelper.cloud.registry.group | 对服务注册进行分组，注册的服务名称变成[provider-name].[group-name] | String | 本机的hostname (hostname有利于开发人员识别服务注册方) |
-| devhelper.cloud.discovery.enabled | devhelper的服务发现是否开启 | String | false (默认不开启，也是为了避免生产环境使用) |
+| devhelper.cloud.discovery.enabled | devhelper的服务发现是否开启 | boolean | false (默认不开启，也是为了避免生产环境使用) |
 | devhelper.cloud.discovery.group | 发现指定分组下的服务 | JSON对象{"服务名称-1": "分组名称", "服务名称": "分组名称"} | 空 |
+
+## 可以参考example代码
+
+- Nacos
+    - [nacos-discovery-consumer-example](./devhelper-cloud-discovery-example/nacos-discovery-consumer-example)
+    - [nacos-discovery-provider-example](./devhelper-cloud-discovery-example/nacos-discovery-consumer-example)
+
+- Eureka
+    - 敬请期待!
