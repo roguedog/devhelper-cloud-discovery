@@ -14,7 +14,7 @@
     <groupId>devhelper-cloud</groupId>
     <artifactId>devhelper-cloud-discovery</artifactId>
     <packaging>pom</packaging>
-    <version>${revision}</version>
+    <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>devhelper-cloud-discovery-common</module>
@@ -44,14 +44,6 @@
         <dependencies>
             <!-- Spring Dependencies -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring-cloud.version}</version>
@@ -71,20 +63,9 @@
             <dependency>
                 <groupId>devhelper-cloud</groupId>
                 <artifactId>devhelper-cloud-discovery-common</artifactId>
-                <version>${revision}</version>
+                <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>devhelper-cloud</groupId>
-                <artifactId>devhelper-cloud-starter-discovery-nacos</artifactId>
-                <version>${revision}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>devhelper-cloud</groupId>
-                <artifactId>devhelper-cloud-starter-discovery-eureka</artifactId>
-                <version>${revision}</version>
-                <scope>test</scope>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
