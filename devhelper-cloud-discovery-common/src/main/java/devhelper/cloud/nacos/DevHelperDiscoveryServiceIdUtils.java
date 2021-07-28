@@ -3,40 +3,42 @@ package devhelper.cloud.nacos;
 import org.springframework.util.StringUtils;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 /**
  * service id拼接group
  * @author zhangkai
  */
 public class DevHelperDiscoveryServiceIdUtils {
-    public static final String PREFIX_GROUP = ".";
-    private static String DEFAULT_GROUP;
+    public static final String DOT = ".";
+    private static String DEFAULT_SUFFIX;
 
     static {
         try {
-            DEFAULT_GROUP = InetAddress.getLocalHost().getHostName();
-        } catch (UnknownHostException e) {
+            DEFAULT_SUFFIX = System.getProperty("user.name");
+            if (StringUtils.isEmpty(DEFAULT_SUFFIX)) {
+                DEFAULT_SUFFIX = InetAddress.getLocalHost().getHostName();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static String buildRegistryServiceIdByGroup(String serviceId, String group) {
-        if (StringUtils.isEmpty(group)) {
-            group = DEFAULT_GROUP;
+    public static String buildRegistryServiceIdBySuffix(String serviceId, String suffix) {
+        if (StringUtils.isEmpty(suffix)) {
+            suffix = DEFAULT_SUFFIX;
         }
-        return buildServiceIdByGroup(serviceId, group);
+        return buildServiceIdBySuffix(serviceId, suffix);
     }
 
-    public static String getDiscoveryServiceIdByGroup(String serviceId, String group) {
-        if (StringUtils.isEmpty(group)) {
+    public static String getDiscoveryServiceIdBySuffix(String serviceId, String suffix) {
+        if (StringUtils.isEmpty(suffix)) {
             return serviceId;
         }
-        return buildServiceIdByGroup(serviceId, group);
+        return buildServiceIdBySuffix(serviceId, suffix);
     }
 
-    public static String buildServiceIdByGroup(String serviceId, String group) {
-        return serviceId + PREFIX_GROUP + group;
+    public static String buildServiceIdBySuffix(String serviceId, String suffix) {
+        return serviceId + DOT + suffix;
     }
 
 }

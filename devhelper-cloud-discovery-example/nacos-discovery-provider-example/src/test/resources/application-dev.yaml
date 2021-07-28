@@ -5,4 +5,4 @@ devhelper:
       #开启devhelper的服务注册
       enabled: true
       #对服务注册进行分组，分组名配置为group-1
-      group: group-1
+      suffix: v-1

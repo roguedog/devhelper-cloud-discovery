@@ -11,10 +11,9 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "devhelper.cloud.discovery")
 class DevHelperDiscoveryProperties {
 
-    private final Map<String,String> group =new HashMap<>();
+    private final Map<String,String> suffix =new HashMap<>();
 
-    public Map<String, String> getGroup() {
-        return group;
+    public Map<String, String> getSuffix() {
+        return suffix;
     }
-
 }

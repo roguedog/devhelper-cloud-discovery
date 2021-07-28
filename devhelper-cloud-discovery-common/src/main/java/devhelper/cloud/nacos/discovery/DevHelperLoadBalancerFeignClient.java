@@ -23,7 +23,7 @@ class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
     private final Map<String,String> groupConfig = new HashMap<>();
     public DevHelperLoadBalancerFeignClient(Client delegate, CachingSpringLoadBalancerFactory lbClientFactory, SpringClientFactory clientFactory, DevHelperDiscoveryProperties discoveryProperties) {
         super(delegate, lbClientFactory, clientFactory);
-        groupConfig.putAll(discoveryProperties.getGroup());
+        groupConfig.putAll(discoveryProperties.getSuffix());
     }
 
     @Override
@@ -52,7 +52,7 @@ class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
             prefix = originalUrl.substring(0, 7);
             suffix = originalUrl.substring(7 + clientName.length());
         }
-        StringBuffer buffer = new StringBuffer(prefix + DevHelperDiscoveryServiceIdUtils.getDiscoveryServiceIdByGroup(clientName, groupName) + suffix);
+        StringBuffer buffer = new StringBuffer(prefix + DevHelperDiscoveryServiceIdUtils.getDiscoveryServiceIdBySuffix(clientName, groupName) + suffix);
         if (newUrl.startsWith("https://") && newUrl.length() == 8 || newUrl.startsWith("http://") && newUrl.length() == 7) {
             buffer.append("/");
         }

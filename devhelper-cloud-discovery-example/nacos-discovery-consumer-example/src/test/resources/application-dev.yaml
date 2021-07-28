@@ -4,11 +4,14 @@ devhelper:
     registry:
       #开启devhelper的服务注册
       enabled: true
-      #对服务注册进行分组，分组名配置为group-1
-#      group: group-1
+      #服务注册名称增加后缀，默认值是本机用户名
+#      suffix: v-1
     # 服务发现配置
     discovery:
       #开启devhelper的服务发现
       enabled: true
-      # 发现指定分组下的服务，JSON格式，key：服务名称，value: 分组名称
-      group: { "nacos-service-provider": "group-1" }
+      # 发现指定后缀的服务，Map格式，key：服务名称，value: 后缀
+      suffix:
+        nacos-service-provider: v-1
+        nacos-service-provider-2: v-2
+

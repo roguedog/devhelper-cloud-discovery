@@ -8,13 +8,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "devhelper.cloud.registry")
 public class DevHelperRegistryProperties {
 
-    private String group;
+    private String suffix;
 
-    public String getGroup() {
-        return group;
+    public String getSuffix() {
+        return suffix;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
     }
 }

@@ -31,6 +31,6 @@ public class DevHelperRegistryServiceIdOverwriteAutoConfiguration {
     @PostConstruct
     public void rewriteServiceId() {
         //服务注册时增加分组后缀
-        nacosDiscoveryProperties.setService(DevHelperDiscoveryServiceIdUtils.buildRegistryServiceIdByGroup(nacosDiscoveryProperties.getService(), registryProperties.getGroup()));
+        nacosDiscoveryProperties.setService(DevHelperDiscoveryServiceIdUtils.buildRegistryServiceIdBySuffix(nacosDiscoveryProperties.getService(), registryProperties.getSuffix()));
     }
 }
