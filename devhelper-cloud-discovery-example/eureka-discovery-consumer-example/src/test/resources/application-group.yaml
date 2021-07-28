@@ -11,4 +11,4 @@ devhelper:
       #开启devhelper的服务发现
       enabled: true
       # 发现指定分组下的服务，JSON格式，key：服务名称，value: 分组名称
-      group: { "nacos-service-provider": "group-1" }
+      group: { "eureka-service-provider": "group-1" }

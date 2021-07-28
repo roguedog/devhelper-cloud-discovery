@@ -1,4 +1,4 @@
-package devhelper.cloud.nacos.example;
+package devhelper.cloud.eureka.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author zhangkai
  */
 @SpringBootApplication
-public class NacosConsumerDevApplication {
+public class EurekaConsumerDevApplication {
     public static void main(String[] args) {
         //引入分组的配置文件
         System.setProperty("spring.profiles.active", "group");
-        SpringApplication.run(NacosConsumerDevApplication.class, args);
+        SpringApplication.run(EurekaConsumerDevApplication.class, args);
 
     }
 }

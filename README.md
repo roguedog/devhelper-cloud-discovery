@@ -24,7 +24,13 @@
 ```
 如果注册中心用的是eureka，敬请期待!
 ```xml
-<!--敬请期待!-->
+<dependency>
+  <groupId>devhelper-cloud</groupId>
+  <artifactId>devhelper-cloud-starter-discovery-eureka</artifactId>
+  <version>x.y.z</version>
+  <!--只能在开发阶段使用，必须配置为test，最好用dependencyManagement来管理-->
+  <scope>test</scope>
+</dependency>
 ```
 
 ## 配置(在src/test目录里配置，不污染源代码)
@@ -77,4 +83,6 @@ public class NacosConsumerDevApplication {
     - [nacos-discovery-provider-example](./devhelper-cloud-discovery-example/nacos-discovery-consumer-example)
 
 - Eureka
-    - 敬请期待!
+    - [eureka-discovery-consumer-example](./devhelper-cloud-discovery-example/eureka-discovery-consumer-example)
+    - [eureka-discovery-provider-example](./devhelper-cloud-discovery-example/eureka-discovery-consumer-example)
+
