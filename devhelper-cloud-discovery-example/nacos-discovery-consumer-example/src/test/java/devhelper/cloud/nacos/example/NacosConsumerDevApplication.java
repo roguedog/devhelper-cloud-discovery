@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 public class NacosConsumerDevApplication {
     public static void main(String[] args) {
-        //引入分组的配置文件
+        //引入devhelper的配置文件
         System.setProperty("spring.profiles.active", "dev");
         //用src/main/java包下的启动类启动应用，避免重复的配置
         SpringApplication.run(NacosConsumerApplication.class, args);

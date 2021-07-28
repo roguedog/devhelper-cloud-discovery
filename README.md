@@ -68,7 +68,7 @@ devhelper:
  */
 public class NacosConsumerDevApplication {
   public static void main(String[] args) {
-    //引入分组的配置文件
+    //引入devhelper的配置文件
     System.setProperty("spring.profiles.active", "dev");
     //用src/main/java包下的启动类(NacosConsumerApplication)启动应用，避免重复的配置
     SpringApplication.run(NacosConsumerApplication.class, args);
@@ -83,7 +83,7 @@ public class NacosConsumerDevApplication {
 | devhelper.cloud.registry.enabled | devhelper的服务注册是否开启 | boolean | false (默认不开启，也是为了避免生产环境使用) |
 | devhelper.cloud.registry.suffix | 对服务注册名增加后缀，注册的服务名称变成[provider-name].[suffix] | String | 本机的用户名 (有利于开发人员识别服务注册方) |
 | devhelper.cloud.discovery.enabled | devhelper的服务发现是否开启 | boolean | false (默认不开启，也是为了避免生产环境使用) |
-| devhelper.cloud.discovery.suffix | 发现指定分组下的服务 | Map格式 | 空 |
+| devhelper.cloud.discovery.suffix | 发现指定后缀的服务 | Map格式 | 空 |
 
 ## 可以参考example代码
 
