@@ -15,6 +15,8 @@
         <dependency>
             <groupId>devhelper-cloud</groupId>
             <artifactId>devhelper-cloud-starter-discovery-nacos</artifactId>
+            <!--只能在开发阶段使用，必须配置为test，最好用dependencyManagement来管理-->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -30,5 +32,17 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <testResources>
+            <testResource>
+                <!--使用src/main/resources目录下的配置-->
+                <directory>src/main/resources</directory>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
+    </build>
 
 </project>

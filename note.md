@@ -23,3 +23,4 @@ feign client实例创建FeignClientFactoryBean.getObject()
 在feign中mock服务 https://www.cnblogs.com/zhangjianbin/p/9245023.html，重写LoadBalancerFeignClient.execute
 
 feign配置项org.springframework.cloud.openfeign.FeignClientProperties.FeignClientConfiguration
+
