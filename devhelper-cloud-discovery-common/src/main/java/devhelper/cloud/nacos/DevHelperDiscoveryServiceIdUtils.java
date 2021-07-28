@@ -5,7 +5,7 @@ import org.springframework.util.StringUtils;
 import java.net.InetAddress;
 
 /**
- * service id拼接group
+ * service id拼接后缀
  * @author zhangkai
  */
 public class DevHelperDiscoveryServiceIdUtils {

@@ -35,14 +35,16 @@ devhelper:
     registry:
       #开启devhelper的服务注册
       enabled: true
-      #对服务注册进行分组，分组名配置为group-1，默认值本机hostname
-      group: group-1
+      #服务注册名称增加后缀，默认值是本机用户名
+      suffix: v-1
     # 服务发现配置
     discovery:
       #开启devhelper的服务发现
       enabled: true
-      # 发现指定分组下的服务，JSON格式，key：服务名称，value: 分组名称
-      group: { "service-provider": "group-1" }
+      # 发现指定后缀的服务，Map格式，key：服务名称，value: 后缀
+      suffix:
+        service-provider-a: v-1
+        service-provider-b: v-2
 ```
 - 如果想使用src/main/resources目录下的配置文件，可以配置：
 ```xml
@@ -79,9 +81,9 @@ public class NacosConsumerDevApplication {
 | 配置项 | 描述 | 类型 | 默认值 |
 |------|------------|------|-------|
 | devhelper.cloud.registry.enabled | devhelper的服务注册是否开启 | boolean | false (默认不开启，也是为了避免生产环境使用) |
-| devhelper.cloud.registry.group | 对服务注册进行分组，注册的服务名称变成[provider-name].[group-name] | String | 本机的hostname (hostname有利于开发人员识别服务注册方) |
+| devhelper.cloud.registry.suffix | 对服务注册名增加后缀，注册的服务名称变成[provider-name].[suffix] | String | 本机的用户名 (有利于开发人员识别服务注册方) |
 | devhelper.cloud.discovery.enabled | devhelper的服务发现是否开启 | boolean | false (默认不开启，也是为了避免生产环境使用) |
-| devhelper.cloud.discovery.group | 发现指定分组下的服务 | JSON对象{"服务名称-1": "分组名称", "服务名称": "分组名称"} | 空 |
+| devhelper.cloud.discovery.suffix | 发现指定分组下的服务 | Map格式 | 空 |
 
 ## 可以参考example代码
 
