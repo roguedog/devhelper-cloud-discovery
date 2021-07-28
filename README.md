@@ -18,7 +18,6 @@
     <!--只能在开发阶段使用，必须配置为test，最好用dependencyManagement来管理-->
     <scope>test</scope>
 </dependency>
-
 <!--如果注册中心用的是eureka，敬请期待：-->
 
 ```
@@ -28,7 +27,7 @@
 ```
 
 ## 配置(在src/test目录里配置，不污染源代码)
-在src/test/resources目录下的application-group.yaml中配置
+在src/test/resources目录下的application-dev.yaml中配置
 ```yaml
 devhelper:
   cloud:
@@ -36,7 +35,7 @@ devhelper:
     registry:
       #开启devhelper的服务注册
       enabled: true
-      #对服务注册进行分组，分组名配置为group-1
+      #对服务注册进行分组，分组名配置为group-1，默认值本机hostname
       group: group-1
     # 服务发现配置
     discovery:
@@ -45,19 +44,33 @@ devhelper:
       # 发现指定分组下的服务，JSON格式，key：服务名称，value: 分组名称
       group: { "service-provider": "group-1" }
 ```
+如果想使用src/main/resources目录下的配置文件，可以配置：
+```xml
+<build>
+  <testResources>
+    <testResource>
+      <!--使用src/main/resources目录下的配置-->
+      <directory>src/main/resources</directory>
+    </testResource>
+    <testResource>
+      <directory>src/test/resources</directory>
+    </testResource>
+  </testResources>
+</build>
+```
 在src/test/java目录下配置启动类
 ```java
 /**
  * 本地开发时，在src/test目录下配置和启动项目，不污染源代码
+ * @author zhangkai
  */
-@SpringBootApplication
 public class NacosConsumerDevApplication {
-    public static void main(String[] args) {
-        //引入分组的配置文件
-        System.setProperty("spring.profiles.active", "group");
-        SpringApplication.run(NacosConsumerDevApplication.class, args);
-
-    }
+  public static void main(String[] args) {
+    //引入分组的配置文件
+    System.setProperty("spring.profiles.active", "dev");
+    //用src/main/java包下的启动类启动应用，避免重复的配置
+    SpringApplication.run(NacosConsumerApplication.class, args);
+  }
 }
 ```
 
