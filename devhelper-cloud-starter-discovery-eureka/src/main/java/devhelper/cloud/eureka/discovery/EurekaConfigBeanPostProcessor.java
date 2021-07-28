@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
 
 /**
- * 类的描述
+ * eureka注册时带上分组信息
  *
  * @author: yuzicheng
  * @since: 7/28/21 6:10 下午
