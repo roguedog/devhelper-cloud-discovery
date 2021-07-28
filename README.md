@@ -27,7 +27,7 @@
 ```
 
 ## 配置(在src/test目录里配置，不污染源代码)
-在src/test/resources目录下的application-dev.yaml中配置
+- 在src/test/resources目录下的application-dev.yaml中配置
 ```yaml
 devhelper:
   cloud:
@@ -44,7 +44,7 @@ devhelper:
       # 发现指定分组下的服务，JSON格式，key：服务名称，value: 分组名称
       group: { "service-provider": "group-1" }
 ```
-如果想使用src/main/resources目录下的配置文件，可以配置：
+- 如果想使用src/main/resources目录下的配置文件，可以配置：
 ```xml
 <build>
   <testResources>
@@ -58,7 +58,7 @@ devhelper:
   </testResources>
 </build>
 ```
-在src/test/java目录下配置启动类
+- 在src/test/java目录下配置启动类
 ```java
 /**
  * 本地开发时，在src/test目录下配置和启动项目，不污染源代码
