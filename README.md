@@ -18,10 +18,8 @@
     <!--只能在开发阶段使用，必须配置为test，最好用dependencyManagement来管理-->
     <scope>test</scope>
 </dependency>
-<!--如果注册中心用的是eureka，敬请期待：-->
-
 ```
-如果注册中心用的是eureka，敬请期待!
+如果注册中心用的是eureka，添加以下依赖：
 ```xml
 <dependency>
   <groupId>devhelper-cloud</groupId>
