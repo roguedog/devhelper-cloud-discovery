@@ -25,7 +25,7 @@ public class EurekaConfigBeanPostProcessor implements BeanPostProcessor {
         if (bean instanceof EurekaInstanceConfigBean) {
             EurekaInstanceConfigBean configBean = (EurekaInstanceConfigBean) bean;
             String appName = configBean.getAppname();
-            String newAppName = DevHelperDiscoveryServiceIdUtils.buildRegistryServiceIdByGroup(appName, registryProperties.getGroup());
+            String newAppName = DevHelperDiscoveryServiceIdUtils.buildRegistryServiceIdBySuffix(appName, registryProperties.getSuffix());
 
             configBean.setAppname(newAppName);
             configBean.setSecureVirtualHostName(newAppName);
