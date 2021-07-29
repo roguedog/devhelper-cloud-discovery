@@ -20,10 +20,10 @@ import java.util.Map;
  */
 class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
 
-    private final Map<String,String> groupConfig = new HashMap<>();
+    private final Map<String,String> suffixConfig = new HashMap<>();
     public DevHelperLoadBalancerFeignClient(Client delegate, CachingSpringLoadBalancerFactory lbClientFactory, SpringClientFactory clientFactory, DevHelperDiscoveryProperties discoveryProperties) {
         super(delegate, lbClientFactory, clientFactory);
-        groupConfig.putAll(discoveryProperties.getGroup());
+        suffixConfig.putAll(discoveryProperties.getSuffix());
     }
 
     @Override
@@ -31,9 +31,9 @@ class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
         String url = request.url();
         URI asUri = URI.create(url);
         String clientName = asUri.getHost();
-        String groupName = groupConfig.get(clientName);
-        if (!StringUtils.isEmpty(groupName)) {
-            String newUrl = replaceUrl(url, clientName, groupName);
+        String suffixName = suffixConfig.get(clientName);
+        if (!StringUtils.isEmpty(suffixName)) {
+            String newUrl = replaceUrl(url, clientName, suffixName);
             request = Request.create(request.httpMethod(),
                     newUrl, request.headers(), request.body(), request.charset(), request.requestTemplate()
             );
@@ -41,7 +41,7 @@ class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
         return super.execute(request, options);
     }
 
-    String replaceUrl(String originalUrl, String clientName, String groupName) {
+    String replaceUrl(String originalUrl, String clientName, String suffixName) {
         String newUrl = originalUrl;
         String prefix = "";
         String suffix = "";
@@ -52,7 +52,7 @@ class DevHelperLoadBalancerFeignClient extends LoadBalancerFeignClient {
             prefix = originalUrl.substring(0, 7);
             suffix = originalUrl.substring(7 + clientName.length());
         }
-        StringBuffer buffer = new StringBuffer(prefix + DevHelperDiscoveryServiceIdUtils.getDiscoveryServiceIdByGroup(clientName, groupName) + suffix);
+        StringBuffer buffer = new StringBuffer(prefix + DevHelperDiscoveryServiceIdUtils.getDiscoveryServiceIdBySuffix(clientName, suffixName) + suffix);
         if (newUrl.startsWith("https://") && newUrl.length() == 8 || newUrl.startsWith("http://") && newUrl.length() == 7) {
             buffer.append("/");
         }

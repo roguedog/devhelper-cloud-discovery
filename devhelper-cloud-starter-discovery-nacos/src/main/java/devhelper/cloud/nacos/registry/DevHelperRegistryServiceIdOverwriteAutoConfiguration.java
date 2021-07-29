@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 
 /**
- * 服务注册时增加分组后缀
+ * 服务注册时增加后缀
  * @author zhangkai
  */
 @Configuration
@@ -30,7 +30,7 @@ public class DevHelperRegistryServiceIdOverwriteAutoConfiguration {
 
     @PostConstruct
     public void rewriteServiceId() {
-        //服务注册时增加分组后缀
-        nacosDiscoveryProperties.setService(DevHelperDiscoveryServiceIdUtils.buildRegistryServiceIdByGroup(nacosDiscoveryProperties.getService(), registryProperties.getGroup()));
+        //服务注册时增加后缀
+        nacosDiscoveryProperties.setService(DevHelperDiscoveryServiceIdUtils.buildRegistryServiceIdBySuffix(nacosDiscoveryProperties.getService(), registryProperties.getSuffix()));
     }
 }
