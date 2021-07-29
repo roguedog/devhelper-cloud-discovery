@@ -1,5 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-devhelper.cloud.eureka.discovery.DevHelperRegistryServiceIdOverwriteAutoConfiguration,\
-devhelper.cloud.nacos.discovery.DevHelperFeignClientAutoConfiguration
+devhelper.cloud.eureka.discovery.DevHelperEurekaDiscoveryAutoConfiguration
 

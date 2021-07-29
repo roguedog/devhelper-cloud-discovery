@@ -1,4 +1,4 @@
-package devhelper.cloud.eureka.discovery;
+package devhelper.cloud.eureka.discovery.registry;
 
 import devhelper.cloud.nacos.registry.DevHelperRegistryProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
