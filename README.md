@@ -93,9 +93,9 @@ public class NacosConsumerDevApplication {
 
 - Nacos
     - [nacos-discovery-consumer-example](./devhelper-cloud-discovery-example/nacos-discovery-consumer-example)
-    - [nacos-discovery-provider-example](./devhelper-cloud-discovery-example/nacos-discovery-consumer-example)
+    - [nacos-discovery-provider-example](./devhelper-cloud-discovery-example/nacos-discovery-provider-example)
 
 - Eureka
     - [eureka-discovery-consumer-example](./devhelper-cloud-discovery-example/eureka-discovery-consumer-example)
-    - [eureka-discovery-provider-example](./devhelper-cloud-discovery-example/eureka-discovery-consumer-example)
+    - [eureka-discovery-provider-example](./devhelper-cloud-discovery-example/eureka-discovery-provider-example)
 
