@@ -12,7 +12,7 @@
 如果注册中心用的是nacos（spring-cloud-starter-alibaba-nacos-discovery），添加以下依赖：
 ```xml
 <dependency>
-    <groupId>devhelper-cloud</groupId>
+    <groupId>io.github.roguedog</groupId>
     <artifactId>devhelper-cloud-starter-discovery-nacos</artifactId>
     <version>x.y.z</version>
     <!--只能在开发阶段使用，必须配置为test，最好用dependencyManagement来管理-->
@@ -22,7 +22,7 @@
 如果注册中心用的是eureka，添加以下依赖：
 ```xml
 <dependency>
-  <groupId>devhelper-cloud</groupId>
+  <groupId>io.github.roguedog</groupId>
   <artifactId>devhelper-cloud-starter-discovery-eureka</artifactId>
   <version>x.y.z</version>
   <!--只能在开发阶段使用，必须配置为test，最好用dependencyManagement来管理-->

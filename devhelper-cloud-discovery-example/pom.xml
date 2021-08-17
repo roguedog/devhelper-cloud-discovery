@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>devhelper-cloud</groupId>
+        <groupId>io.github.roguedog</groupId>
         <artifactId>devhelper-cloud-discovery</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -49,13 +49,13 @@
 
             <!-- Project  Dependencies -->
             <dependency>
-                <groupId>devhelper-cloud</groupId>
+                <groupId>io.github.roguedog</groupId>
                 <artifactId>devhelper-cloud-starter-discovery-nacos</artifactId>
                 <version>${project.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>devhelper-cloud</groupId>
+                <groupId>io.github.roguedog</groupId>
                 <artifactId>devhelper-cloud-starter-discovery-eureka</artifactId>
                 <version>${project.version}</version>
                 <scope>test</scope>
@@ -74,16 +74,11 @@
             </testResource>
         </testResources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
@@ -91,6 +86,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>

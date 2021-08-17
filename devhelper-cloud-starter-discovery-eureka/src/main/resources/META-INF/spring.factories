@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-devhelper.cloud.eureka.discovery.DevHelperEurekaDiscoveryAutoConfiguration
+io.github.roguedog.devhelper.cloud.eureka.discovery.DevHelperEurekaDiscoveryAutoConfiguration
 

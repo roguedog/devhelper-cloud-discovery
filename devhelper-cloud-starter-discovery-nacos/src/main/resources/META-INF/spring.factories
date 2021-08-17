@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-devhelper.cloud.nacos.DevHelperNocosDiscoveryAutoConfiguration
+io.github.roguedog.devhelper.cloud.DevHelperNocosDiscoveryAutoConfiguration
