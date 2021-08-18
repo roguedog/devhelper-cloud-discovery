@@ -15,6 +15,7 @@
         <dependency>
             <groupId>io.github.roguedog</groupId>
             <artifactId>devhelper-cloud-discovery-common</artifactId>
+            <scope>r</scope>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
