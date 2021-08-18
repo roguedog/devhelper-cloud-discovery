@@ -6,8 +6,7 @@
  
 ## 添加依赖
 - 版本说明
-  - 1.0-SNAPSHOT 实验
-  - release待发布
+  - 1.0
   
 如果注册中心用的是nacos（spring-cloud-starter-alibaba-nacos-discovery），添加以下依赖：
 ```xml

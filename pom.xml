@@ -14,7 +14,7 @@
     <groupId>io.github.roguedog</groupId>
     <artifactId>devhelper-cloud-discovery</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <modules>
         <module>devhelper-cloud-discovery-common</module>
@@ -26,7 +26,7 @@
     <properties>
 
         <!-- Compile libs -->
-        <revision>1.0-SNAPSHOT</revision>
+        <revision>1.0</revision>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.6.RELEASE</spring-cloud-alibaba.version>
 
@@ -242,9 +242,6 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-                                <configuration>
-                                    <passphrase>${gpg.passphrase}</passphrase>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
